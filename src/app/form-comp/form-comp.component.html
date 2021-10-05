@@ -1,0 +1,66 @@
+<section id="four">
+    <div >
+  
+      <header class="align-center">
+        <h2>Les clients :</h2>
+        -----------------------<br>
+        <ul>
+            <li *ngFor="let client of clients">
+                {{client|json}}
+            </li>
+        </ul>
+      </header>
+  
+    </div>
+  </section>
+
+<footer id="footer" class="wrapper">
+    <div class="inner">
+        <section>
+            <div class="box">
+                <div class="content">
+                    <h2 class="align-center">Remplire ce formulaire</h2>
+                    <hr />
+                    <form [formGroup]='myForm' >
+                        <div class="field half first">
+                            
+                            <label for="nomPrenom">nom et prenom</label>
+                            <input type="text" name="nomPrenom" id="nomPrenom" formControlName='nomprenom' placeholder="Nom et Prenom" [ngClass]="{ 'is-invalid': f.nomprenom.touched && f.nomprenom.errors }">
+                            <div *ngIf="f.nomprenom.touched && f.nomprenom.errors" class="invalid-feedback">
+                                <div *ngIf="f.nomprenom.errors.required">nom et prenom est requis</div>
+                            </div>
+                        </div>
+                        
+                        <div class="field half">
+                            <label for="email">email</label>
+                            <input type="email" formControlName='email' placeholder="Email" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }">
+                            <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">email est requis</div>
+                            </div>
+                    
+                        </div>
+                        <div class="field">
+                            <label for="sexe">Sexe</label>
+                            <div class="select-wrapper">
+                                <select formControlName='sexe' [ngClass]="{ 'is-invalid': f.sexe.touched && f.sexe.errors }">
+                                    <option value="Homme">Homme</option>
+                                    <option value="Femme">Femme</option>
+                                </select>
+                            </div>
+                            <div *ngIf="f.sexe.touched && f.sexe.errors" class="invalid-feedback">
+                                <div *ngIf="f.sexe.errors.required">sexe est requis</div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="description">Description</label>
+                            <textarea formControlName='description' rows="6" placeholder="Description"></textarea>
+                        </div>
+                        <ul class="actions align-center">
+                            <li><input type="submit" value="envoyer"  (click)="setClient()"></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</footer>
